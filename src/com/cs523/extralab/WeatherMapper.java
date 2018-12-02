@@ -1,14 +1,13 @@
 package com.cs523.extralab;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.io.Text;
 
 public class WeatherMapper extends Mapper<LongWritable, Text, Pair, Text> {
+
   
     @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {

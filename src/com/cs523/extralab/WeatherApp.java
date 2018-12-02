@@ -40,6 +40,8 @@ public class WeatherApp extends Configured implements Tool {
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
         
+        job.getConfiguration().set("mapreduce.output.basename", "StationTempRecord");
+        
         //job.setNumReduceTasks(2);
         
         File file = new File("./output");
@@ -88,6 +90,21 @@ public class WeatherApp extends Configured implements Tool {
     		
 			FileSystem fs = FileSystem.get(new Configuration());
 			fs.delete(path);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return false;
+    }
+    
+    private static boolean createHDFSOutputDirectory(Path path) {
+    	
+    	try {
+    		
+			FileSystem fs = FileSystem.get(new Configuration());
+			fs.create(path);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
